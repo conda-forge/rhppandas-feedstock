@@ -1,7 +1,6 @@
 context:
   name: rhppandas
   version: "0.3.0"
-  python_min: 3.12
 
 package:
   name: ${{ name|lower }}
@@ -20,17 +19,16 @@ build:
 requirements:
   host:
     - python ==${{ python_min }}
-    - poetry-core >=1.0.0
+    - poetry-core >=2.0,<3.0
     - wheel
     - pip
   run:
-    - python ${{ python_min }}.*
-    - rhealpixdggs
+    - python >=${{ python_min }}
+    - rhealpixdggs >=0.7.1
     - geopandas
     - numpy
     - pandas
     - shapely
-    - numpy
     - typing-extensions
 
 tests:
@@ -38,6 +36,9 @@ tests:
       imports:
         - rhppandas
       pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
   - script:
       - pytest -v tests/
     requirements:
