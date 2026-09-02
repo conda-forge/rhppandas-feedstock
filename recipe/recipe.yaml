@@ -1,7 +1,6 @@
 context:
   name: rhppandas
-  version: 0.2.1
-  python_min: 3.12
+  version: "0.3.0"
 
 package:
   name: ${{ name|lower }}
@@ -9,28 +8,27 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
-  sha256: 50950d94142a655b94438694784197c6b3619ab2cee799519f60674d9ed26e4d
+  sha256: 775ed4af085107fe913f98393c2b54dde69195b3ad7aa7f2db6a45d46bfd5f02
 
 build:
   noarch: python
-  script: 
-   - python -m pip install . --no-deps -vv
-  number: 1
+  script:
+    - python -m pip install . --no-deps -vv
+  number: 0
 
 requirements:
   host:
     - python ==${{ python_min }}
-    - poetry-core >=1.0.0
+    - poetry-core >=2.0,<3.0
     - wheel
     - pip
   run:
-    - python ${{ python_min }}.*
-    - rhealpixdggs
+    - python >=${{ python_min }}
+    - rhealpixdggs >=0.7.1
     - geopandas
     - numpy
     - pandas
     - shapely
-    - numpy
     - typing-extensions
 
 tests:
@@ -38,10 +36,13 @@ tests:
       imports:
         - rhppandas
       pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
   - script:
-      - pytest -v tests/ 
+      - pytest -v tests/
     requirements:
-      run: 
+      run:
         - pytest
         - python ==${{ python_min }}
     files:
@@ -51,7 +52,7 @@ tests:
 about:
   homepage: "https://github.com/manaakiwhenua/rHP-Pandas"
   repository: "https://github.com/manaakiwhenua/rHP-Pandas"
-  summary: "Integration of rHEALPixDGGS and Pandas/GeoPandas" 
+  summary: "Integration of rHEALPixDGGS and Pandas/GeoPandas"
   license: GPL-3.0-or-later
   license_file: LICENSE
 
