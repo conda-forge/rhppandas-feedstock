@@ -1,6 +1,6 @@
 context:
   name: rhppandas
-  version: "0.3.0"
+  version: "0.4.0"
 
 package:
   name: ${{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
-  sha256: 775ed4af085107fe913f98393c2b54dde69195b3ad7aa7f2db6a45d46bfd5f02
+  sha256: fddb3cb475073f284a768d771f38ad2d121484fc213b8bbf2b4929af421ae922
 
 build:
   noarch: python
