@@ -24,7 +24,7 @@ requirements:
     - pip
   run:
     - python >=${{ python_min }}
-    - rhealpixdggs >=0.7.1
+    - rhealpixdggs >=0.8.3
     - geopandas
     - numpy
     - pandas
